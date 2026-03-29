@@ -1,34 +1,57 @@
-🇧🇷 Português | 🇺🇸 [English](#english)
+# ESP32 Serial Display ADC — Protocolo Y/W/X com LCD e ADC
 
-# esp32-serial-display-adc
-
-ESP32 com serial, LCD I2C e leitura ADC — firmware final do PSEE.
-
-| Byte | Função |
-|------|--------|
-| `'Y'` | Início de frame |
-| `'W'` | Fim + exibe no LCD |
-| `'X'` | Leitura ADC → tensão |
-
-**Baud rate:** 9600
-
-Centro Tecnológico Liberato — Novo Hamburgo/RS
+🇧🇷 **Português** | 🇺🇸 [English](#english)
 
 ---
 
-<a name="english"></a>
-🇧🇷 [Português](#) | 🇺🇸 English
+## Português
 
-# esp32-serial-display-adc
+Versão completa do protocolo serial Y/W/X com LCD e leitura de ADC no GPIO15, convertendo tensão com fator `/1240.9`.
 
-ESP32 with serial, I2C LCD and ADC reading — final PSEE firmware.
+### O que faz
+- Implementa protocolo serial **Y/W/X** (9600 bps)
+- Lê sinal analógico via **ADC no GPIO15**
+- Converte valor ADC para grandeza física: `valor = raw / 1240.9`
+- Exibe dados no **LCD**
+- Transmite leituras via serial para interface Kivy
 
-| Byte | Function |
-|------|----------|
-| `'Y'` | Frame start |
-| `'W'` | Frame end + display |
-| `'X'` | ADC read → voltage |
+### Fórmula de conversão
+```
+grandeza = ADC_raw / 1240.9
+```
 
-**Baud rate:** 9600
+### Mapa de pinos
+| Pino | Função |
+|---|---|
+| GPIO15 | ADC — entrada analógica |
+| LCD pins | Display de dados |
 
-Centro Tecnológico Liberato — Novo Hamburgo/RS, Brazil
+### Plataforma
+ESP32 — Arduino Framework
+
+---
+
+## English
+
+Full Y/W/X serial protocol version with LCD and ADC reading on GPIO15, converting voltage with factor `/1240.9`.
+
+### What it does
+- Implements **Y/W/X** serial protocol (9600 bps)
+- Reads analog signal via **ADC on GPIO15**
+- Converts ADC value to physical quantity: `value = raw / 1240.9`
+- Displays data on **LCD**
+- Transmits readings over serial to Kivy interface
+
+### Conversion formula
+```
+quantity = ADC_raw / 1240.9
+```
+
+### Pin map
+| Pin | Function |
+|---|---|
+| GPIO15 | ADC — analog input |
+| LCD pins | Data display |
+
+### Platform
+ESP32 — Arduino Framework
